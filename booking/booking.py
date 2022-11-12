@@ -2,12 +2,15 @@ import booking.constants as const
 from selenium import webdriver
 from selenium.webdriver.support.select import By
 from booking.booking_filtration import BookingFiltration
+from booking.booking_report import BookingReport
 
 class Booking(webdriver.Chrome):
     def __init__(self, driver_path = "C:\SeleniumDrivers\chromedriver.exe", teardown=False):
         self.driver_path = driver_path
         self.teardown = teardown
-        super().__init__(driver_path)
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        super().__init__(driver_path, options=options)
         self.implicitly_wait(15)
         self.maximize_window()
 
@@ -67,3 +70,12 @@ class Booking(webdriver.Chrome):
         filtration = BookingFiltration(driver=self)
         filtration.apply_star_rating("4 звезды","5 звезд")
         filtration.sort_price_lower_first()
+
+    def report_result(self):
+        hotel_boxes = self.find_element(By.CSS_SELECTOR, 'div[data-block-id="hotel_list"]')
+        report = BookingReport(hotel_boxes)
+        report.pull_hotels_attributes()
+
+    def close_pop_up(self):
+        close_popup_btn = self.find_element(By.CSS_SELECTOR, 'button[aria-label="Скрыть меню входа в аккаунт."]')
+        close_popup_btn.click()
