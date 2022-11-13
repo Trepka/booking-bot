@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.support.select import By
 from booking.booking_filtration import BookingFiltration
 from booking.booking_report import BookingReport
+from prettytable import PrettyTable
 
 class Booking(webdriver.Chrome):
     def __init__(self, driver_path = "C:\SeleniumDrivers\chromedriver.exe", teardown=False):
@@ -74,7 +75,12 @@ class Booking(webdriver.Chrome):
     def report_result(self):
         hotel_boxes = self.find_element(By.CSS_SELECTOR, 'div[data-block-id="hotel_list"]')
         report = BookingReport(hotel_boxes)
-        report.pull_hotels_attributes()
+        table = PrettyTable(
+            field_names=["Hotel Name", "Hotel Price", "Hotel Score"]
+        )
+        table.add_rows(report.pull_hotels_attributes())
+        print(table)
+        
 
     def close_pop_up(self):
         close_popup_btn = self.find_element(By.CSS_SELECTOR, 'button[aria-label="Скрыть меню входа в аккаунт."]')
