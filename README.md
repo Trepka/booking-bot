@@ -19,4 +19,4 @@ Bot provides functionality for change currency, choose destination (by default c
 
 Bot returns three columns table: Hotel Name, Hotel Price, Hotel Score.
 
-[Bot result](assets/images/expected_result.PNG)
+![Bot result](assets/images/expected_result.PNG)
