@@ -67,9 +67,9 @@ class Booking(webdriver.Chrome):
         submit_btn = self.find_element(By.CSS_SELECTOR, 'button[type="submit"]')
         submit_btn.click()
 
-    def apply_filtrations(self):
+    def apply_filtrations(self, *star_values):
         filtration = BookingFiltration(driver=self)
-        filtration.apply_star_rating("4 звезды","5 звезд")
+        filtration.apply_star_rating(star_values)
         filtration.sort_price_lower_first()
 
     def report_result(self):

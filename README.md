@@ -8,12 +8,13 @@ Bot works with python and selenium. For correct work of bot must be installed [C
 
 ### Bot Usage
 
-Bot provides functionality for change currency, choose destination (by default chose first element from drop down menu of "Where you going field"), check-in and check-out dates, occupancy field. Also bot supports two filters: sort results from lowest price(used by default) and stars filter. For correctness usage stars filter accept one one or more from next list of values:
+Bot provides functionality for change currency, choose destination (by default chose first element from drop down menu of "Where you going?" field), check-in and check-out dates, occupancy field. Also bot supports two filters: sort results from lowest price(used by default) and stars filter. For correctness usage stars filter accept one one or more from next list of values:
 - 1 звезда
 - 2 звезды
 - 3 звезды
 - 4 зведы
 - 5 звезд
+- без звезд
 
 ### Bot result
 
